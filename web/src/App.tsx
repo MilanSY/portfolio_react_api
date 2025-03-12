@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import TechnologyCard from './components/TechnologyCard';
@@ -10,12 +10,11 @@ function App() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    // Replace these URLs with your actual API endpoints
     const fetchData = async () => {
       try {
         const [techResponse, projectsResponse] = await Promise.all([
-          fetch('your-tech-api-endpoint'),
-          fetch('your-projects-api-endpoint')
+          fetch('http://localhost:5000/api/techno'),
+          fetch('http://localhost:5000/api/project')
         ]);
 
         const techData = await techResponse.json();
@@ -34,7 +33,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       <main>
         <Hero />
 
