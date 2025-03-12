@@ -1,2 +1,38 @@
+# Fichiers et dossiers générés par Visual Studio
 .vs/
-.obj/Debug/net9.0/portfolio_api.assets.cache
+*.user
+*.suo
+*.VC.db
+
+# Build et objets compilés
+bin/
+obj/
+out/
+
+# Dépendances et packages NuGet
+packages/
+*.nupkg
+project.lock.json
+*.dnu.json
+
+# Configuration spécifique à l'environnement local
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+.env
+
+# Logs et fichiers temporaires
+*.log
+logs/
+temp/
+
+# Cache et fichiers générés par Rider / JetBrains
+.idea/
+*.iml
+
+# Fichiers de test générés
+TestResults/
+coverage/
+coverage.json
+*.coverage
+*.testlog
