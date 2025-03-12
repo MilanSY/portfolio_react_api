@@ -8,6 +8,7 @@
 bin/
 obj/
 out/
+bin/Debug/net9.0
 
 # Dépendances et packages NuGet
 packages/
