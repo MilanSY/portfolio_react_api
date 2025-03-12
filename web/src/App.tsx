@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import { Hero } from './components/Hero';
 import TechnologyCard from './components/TechnologyCard';
 import ProjectCard from './components/ProjectCard';
 import { Techno, Project } from './types';
@@ -13,12 +13,14 @@ function App() {
     const fetchData = async () => {
       try {
         const [techResponse, projectsResponse] = await Promise.all([
-          fetch('http://localhost:5000/api/techno'),
-          fetch('http://localhost:5000/api/project')
+          fetch('http://localhost:5142/api/techno'),
+          fetch('http://localhost:5142/api/project')
         ]);
 
         const techData = await techResponse.json();
         const projectsData = await projectsResponse.json();
+        console.log(techData);
+        console.log(projectsData);
 
         setTechnologies(techData);
         setProjects(projectsData);

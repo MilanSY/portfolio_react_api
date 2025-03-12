@@ -26,7 +26,7 @@ public class ProjectStorage : IProjectStorage
                 {
                     var project = new Project
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Description = reader.GetString("description"), 
                         Img = reader.GetString("img"), 
@@ -57,7 +57,7 @@ public class ProjectStorage : IProjectStorage
                 {
                     var project = new Project
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Description = reader.GetString("description"),
                         Img = reader.GetString("img"),
@@ -163,7 +163,7 @@ public class ProjectStorage : IProjectStorage
                 {
                     technos.Add(new Techno
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Img = reader.GetString("img"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),

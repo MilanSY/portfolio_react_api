@@ -26,7 +26,7 @@ public class TechnoStorage : ITechnoStorage
                 {
                     technos.Add(new Techno
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Img = reader.GetString("img"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),
@@ -51,7 +51,7 @@ public class TechnoStorage : ITechnoStorage
                 {
                     return new Techno
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Img = reader.GetString("img"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),

@@ -26,7 +26,7 @@ public class DocStorage : IDocStorage
                 {
                     docs.Add(new Doc
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),
                         ProjectId = reader.GetString("project_id")
@@ -50,7 +50,7 @@ public class DocStorage : IDocStorage
                 {
                     return new Doc
                     {
-                        Id = Guid.Parse(reader.GetString("id")),
+                        Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),
                         ProjectId = reader.GetString("project_id")

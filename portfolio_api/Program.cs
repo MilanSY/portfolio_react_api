@@ -16,6 +16,14 @@ builder.Services.AddSingleton<ITechnoStorage, TechnoStorage>();
 builder.Services.AddSingleton<IProjectStorage, ProjectStorage>();
 builder.Services.AddSingleton<IDocStorage, DocStorage>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:5173")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -34,7 +42,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Mapping des endpoints
+app.UseCors("AllowSpecificOrigin");
+
 app.MapControllers();
 
 app.Run();

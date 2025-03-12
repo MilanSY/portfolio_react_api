@@ -13,7 +13,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
-          src={project.url}
+          src={`/assets/img/${project.img}`} // Updated image path
           alt={project.name}
           className="w-full h-48 object-cover"
         />
@@ -40,53 +40,65 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <X size={24} />
               </button>
             </div>
-            
+
             <img
-              src={project.url}
+              src={`/assets/img/${project.img}`} // Updated image path
               alt={project.name}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
+
+            <p className="mb-4">{project.description}</p>
 
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Technologies Used:</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.techno.map((tech) => (
-                    <span
-                      key={tech.id}
-                      className="px-3 py-1 bg-gray-100 rounded-full text-sm"
-                    >
-                      {tech.name}
-                    </span>
-                  ))}
+                  {project.techno && project.techno.length > 0 ? (
+                    project.techno.map((tech) => (
+                      <span
+                        key={tech.id}
+                        className="px-3 py-1 bg-gray-100 rounded-full text-sm"
+                      >
+                        {tech.name}
+                      </span>
+                    ))
+                  ) : (
+                    <p>No technologies used.</p>
+                  )}
                 </div>
               </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Documentation:</h3>
                 <div className="space-y-2">
-                  {project.docs.map((doc, index) => (
-                    <a
-                      key={index}
-                      href={doc}
-                      download
-                      className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      Documentation {index + 1}
-                    </a>
-                  ))}
+                  {project.docs && project.docs.length > 0 ? (
+                    project.docs.map((doc, index) => (
+                      <a
+                        key={index}
+                        href={doc}
+                        download
+                        className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                      >
+                        Documentation {index + 1}
+                      </a>
+                    ))
+                  ) : (
+                    <p>No documentation available.</p>
+                  )}
                 </div>
               </div>
 
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <ExternalLink size={20} />
-                Try it Live
-              </a>
+              {project.url && (
+                <a
+                  href={`/project/${project.url}/index.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <ExternalLink size={20} />
+                  Try it Live
+                </a>
+              )}
             </div>
           </div>
         </div>
