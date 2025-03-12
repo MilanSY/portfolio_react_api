@@ -1,0 +1,126 @@
+@portfolio_api_HostAddress = http://localhost:5142
+
+### Récupérer toutes les technologies
+GET http://localhost:5000/api/techno
+
+### Récupérer une technologie par son ID
+GET http://localhost:5000/api/techno/123e4567-e89b-12d3-a456-426614174000
+
+### Ajouter une nouvelle technologie
+POST http://localhost:5000/api/techno
+Content-Type: application/json
+
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "img": "https://example.com/techno.png",
+  "name": "ASP.NET Core",
+  "url": "https://dotnet.microsoft.com/",
+  "date": "2023-10-01"
+}
+
+### Mettre à jour une technologie
+PUT http://localhost:5000/api/techno/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+{
+  "img": "https://example.com/techno-updated.png",
+  "name": "ASP.NET Core (Updated)",
+  "url": "https://dotnet.microsoft.com/",
+  "date": "2023-10-01"
+}
+
+### Supprimer une technologie
+DELETE http://localhost:5000/api/techno/123e4567-e89b-12d3-a456-426614174000
+
+### Récupérer tous les projets
+GET http://localhost:5000/api/project
+
+### Récupérer un projet par son ID
+GET http://localhost:5000/api/project/123e4567-e89b-12d3-a456-426614174000
+
+### Ajouter un nouveau projet
+POST http://localhost:5000/api/project
+Content-Type: application/json
+
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Mon Projet",
+  "description": "Une description du projet",
+  "img": "https://example.com/project.png",
+  "url": "https://example.com/project",
+  "technos": [
+    {
+      "id": "223e4567-e89b-12d3-a456-426614174000",
+      "img": "https://example.com/techno1.png",
+      "name": "Techno 1",
+      "url": "https://example.com/techno1",
+      "date": "2023-10-01"
+    },
+    {
+      "id": "323e4567-e89b-12d3-a456-426614174000",
+      "img": "https://example.com/techno2.png",
+      "name": "Techno 2",
+      "url": "https://example.com/techno2",
+      "date": "2023-10-01"
+    }
+  ]
+}
+
+### Mettre à jour un projet
+PUT http://localhost:5000/api/project/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+{
+  "name": "Mon Projet (Mis à jour)",
+  "description": "Une description mise à jour du projet",
+  "img": "https://example.com/project-updated.png",
+  "url": "https://example.com/project-updated",
+  "technos": [
+    {
+      "id": "223e4567-e89b-12d3-a456-426614174000",
+      "img": "https://example.com/techno1-updated.png",
+      "name": "Techno 1 (Mis à jour)",
+      "url": "https://example.com/techno1-updated",
+      "date": "2023-10-01"
+    }
+  ]
+}
+
+### Supprimer un projet
+DELETE http://localhost:5000/api/project/123e4567-e89b-12d3-a456-426614174000
+
+### Ajouter une technologie à un projet
+POST http://localhost:5000/api/project/123e4567-e89b-12d3-a456-426614174000/technos/223e4567-e89b-12d3-a456-426614174000
+
+### Supprimer une technologie d'un projet
+DELETE http://localhost:5000/api/project/123e4567-e89b-12d3-a456-426614174000/technos/223e4567-e89b-12d3-a456-426614174000
+
+### Récupérer tous les documents
+GET http://localhost:5000/api/doc
+
+### Récupérer un document par son ID
+GET http://localhost:5000/api/doc/123e4567-e89b-12d3-a456-426614174000
+
+### Ajouter un nouveau document
+POST http://localhost:5000/api/doc
+Content-Type: application/json
+
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "Documentation du projet",
+  "url": "https://example.com/doc",
+  "projectId": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+### Mettre à jour un document
+PUT http://localhost:5000/api/doc/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+{
+  "name": "Documentation du projet (Mis à jour)",
+  "url": "https://example.com/doc-updated",
+  "projectId": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+### Supprimer un document
+DELETE http://localhost:5000/api/doc/123e4567-e89b-12d3-a456-426614174000
