@@ -1,0 +1,5 @@
+
+# Build et objets compilés
+portfolio_api/bin/
+portfolio_api/obj/
+portfolio_api/out/
