@@ -8,13 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<ITechnoService, TechnoService>();
-builder.Services.AddSingleton<IProjectService, ProjectService>();
-builder.Services.AddSingleton<IDocService, DocService>();
+builder.Services.AddScoped<ITechnoService, TechnoService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IDocService, DocService>();
 
-builder.Services.AddSingleton<ITechnoStorage, TechnoStorage>();
-builder.Services.AddSingleton<IProjectStorage, ProjectStorage>();
-builder.Services.AddSingleton<IDocStorage, DocStorage>();
+builder.Services.AddScoped<ITechnoStorage, TechnoStorage>();
+builder.Services.AddScoped<IProjectStorage, ProjectStorage>();
+builder.Services.AddScoped<IDocStorage, DocStorage>();
 
 builder.Services.AddCors(options =>
 {
