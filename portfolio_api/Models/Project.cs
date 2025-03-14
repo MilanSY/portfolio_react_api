@@ -21,6 +21,9 @@ public class Project
     public string Description { get; set; }
 
     [Required]
+    public string Github { get; set; }
+
+    [Required]
     public List<Techno> Technos { get; set; } = new List<Techno>();
 
     [Required]

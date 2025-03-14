@@ -9,7 +9,7 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-6">
             <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
             <a href="#skills" className="hover:text-blue-600 transition-colors">Skills</a>
-            <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#projects" className="hover:text-blue-600 transition-colors">Projets</a>
           </div>
         </div>
       </nav>

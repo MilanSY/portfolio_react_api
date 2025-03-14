@@ -19,7 +19,7 @@ public class TechnoStorage : ITechnoStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Techno", conn);
+            var cmd = new MySqlCommand("SELECT * FROM techno", conn);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
                 while (await reader.ReadAsync())
@@ -43,7 +43,7 @@ public class TechnoStorage : ITechnoStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Techno WHERE id = @id", conn);
+            var cmd = new MySqlCommand("SELECT * FROM techno WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
@@ -68,7 +68,7 @@ public class TechnoStorage : ITechnoStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("INSERT INTO Techno (id, img, name, url, date) VALUES (@id, @img, @name, @url, @date)", conn);
+            var cmd = new MySqlCommand("INSERT INTO techno (id, img, name, url, date) VALUES (@id, @img, @name, @url, @date)", conn);
             cmd.Parameters.AddWithValue("@id", techno.Id.ToString());
             cmd.Parameters.AddWithValue("@img", techno.Img);
             cmd.Parameters.AddWithValue("@name", techno.Name);
@@ -83,7 +83,7 @@ public class TechnoStorage : ITechnoStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("UPDATE Techno SET img = @img, name = @name, url = @url, date = @date WHERE id = @id", conn);
+            var cmd = new MySqlCommand("UPDATE techno SET img = @img, name = @name, url = @url, date = @date WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@img", techno.Img);
             cmd.Parameters.AddWithValue("@name", techno.Name);
@@ -98,7 +98,7 @@ public class TechnoStorage : ITechnoStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("DELETE FROM Techno WHERE id = @id", conn);
+            var cmd = new MySqlCommand("DELETE FROM techno WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             await cmd.ExecuteNonQueryAsync();
         }

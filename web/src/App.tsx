@@ -39,7 +39,7 @@ function App() {
 
         <section id="skills" className="py-20 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-12 text-center">Technologies & Skills</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {technologies.map(tech => (
                 <TechnoCard key={tech.id} techno={tech} />
@@ -50,7 +50,7 @@ function App() {
 
         <section id="projects" className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">Mes Projets</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map(project => (
                 <ProjectCard key={project.id} project={project} />
@@ -62,7 +62,7 @@ function App() {
 
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto px-6 text-center">
-          <p>© {new Date().getFullYear()} Milan JUINO. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Portfolio Milan JUINO.</p>
         </div>
       </footer>
     </div>

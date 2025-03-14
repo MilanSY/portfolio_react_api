@@ -19,7 +19,7 @@ public class DocStorage : IDocStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Doc", conn);
+            var cmd = new MySqlCommand("SELECT * FROM doc", conn);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
                 while (await reader.ReadAsync())
@@ -42,7 +42,7 @@ public class DocStorage : IDocStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Doc WHERE id = @id", conn);
+            var cmd = new MySqlCommand("SELECT * FROM doc WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
@@ -66,7 +66,7 @@ public class DocStorage : IDocStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("INSERT INTO Doc (id, name, url, project_id) VALUES (@id, @name, @url, @projectId)", conn);
+            var cmd = new MySqlCommand("INSERT INTO doc (id, name, url, project_id) VALUES (@id, @name, @url, @projectId)", conn);
             cmd.Parameters.AddWithValue("@id", doc.Id.ToString());
             cmd.Parameters.AddWithValue("@name", doc.Name);
             cmd.Parameters.AddWithValue("@url", doc.Url);
@@ -80,7 +80,7 @@ public class DocStorage : IDocStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("UPDATE Doc SET name = @name, url = @url, project_id = @projectId WHERE id = @id", conn);
+            var cmd = new MySqlCommand("UPDATE doc SET name = @name, url = @url, project_id = @projectId WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", doc.Name);
             cmd.Parameters.AddWithValue("@url", doc.Url);
@@ -94,7 +94,7 @@ public class DocStorage : IDocStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("DELETE FROM Doc WHERE id = @id", conn);
+            var cmd = new MySqlCommand("DELETE FROM doc WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             await cmd.ExecuteNonQueryAsync();
         }

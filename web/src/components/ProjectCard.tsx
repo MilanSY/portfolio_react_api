@@ -51,7 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Technologies Used:</h3>
+                <h3 className="font-semibold mb-2">Technologies Utilisées:</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.technos && project.technos.length > 0 ? (
                     project.technos.map((tech) => (
@@ -63,11 +63,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       </span>
                     ))
                   ) : (
-                    <p>No technologies used.</p>
+                    <p>Aucune technologie utilisée.</p>
                   )}
                 </div>
               </div>
-
+              <div>
+                {project.github ? (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                  >
+                    <ExternalLink size={20} />
+                    GitHub
+                  </a>
+                ) : (
+                  <p>Pas de GitHub disponible.</p>
+                )}
+              </div>
               <div>
                 <h3 className="font-semibold mb-2">Documentation:</h3>
                 <div className="space-y-2">
@@ -84,7 +97,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       </a>
                     ))
                   ) : (
-                    <p>No documentation available.</p>
+                    <p>Pas de documentation disponnible.</p>
                   )}
                 </div>
               </div>
@@ -97,7 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   <ExternalLink size={20} />
-                  Try it Live
+                  Voir le projet live
                 </a>
               )}
             </div>

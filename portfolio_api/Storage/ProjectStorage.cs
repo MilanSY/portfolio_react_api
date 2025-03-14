@@ -19,7 +19,7 @@ public class ProjectStorage : IProjectStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Project", conn);
+            var cmd = new MySqlCommand("SELECT * FROM project", conn);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
                 while (await reader.ReadAsync())
@@ -31,6 +31,7 @@ public class ProjectStorage : IProjectStorage
                         Description = reader.GetString("description"), 
                         Img = reader.GetString("img"), 
                         Url = reader.GetString("url"),
+                        Github = reader.GetString("github"),
                         Technos = new List<Techno>(),
                         Docs = new List<Doc>()
                     };
@@ -53,7 +54,7 @@ public class ProjectStorage : IProjectStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("SELECT * FROM Project WHERE id = @id", conn);
+            var cmd = new MySqlCommand("SELECT * FROM project WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
@@ -66,6 +67,7 @@ public class ProjectStorage : IProjectStorage
                         Description = reader.GetString("description"),
                         Img = reader.GetString("img"),
                         Url = reader.GetString("url"),
+                        Github = reader.GetString("github"),
                         Technos = new List<Techno>(),
                         Docs = new List<Doc>()
                     };
@@ -89,13 +91,13 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "INSERT INTO Project (id, name, description, img, url) " +
-                "VALUES (@id, @name, @description, @img, @url)", conn);
+                "INSERT INTO project (id, name, description, img, url, github) VALUES (@id, @name, @description, @img, @url, @github)", conn);
             cmd.Parameters.AddWithValue("@id", project.Id.ToString());
             cmd.Parameters.AddWithValue("@name", project.Name);
-            cmd.Parameters.AddWithValue("@description", project.Description); 
-            cmd.Parameters.AddWithValue("@img", project.Img); 
+            cmd.Parameters.AddWithValue("@description", project.Description);
+            cmd.Parameters.AddWithValue("@img", project.Img);
             cmd.Parameters.AddWithValue("@url", project.Url);
+            cmd.Parameters.AddWithValue("@github", project.Github); 
             await cmd.ExecuteNonQueryAsync();
         }
     }
@@ -106,13 +108,13 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "UPDATE Project SET name = @name, description = @description, " +
-                "img = @img, url = @url WHERE id = @id", conn);
+                "UPDATE project SET name = @name, description = @description, img = @img, url = @url, github = @github WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", project.Name);
             cmd.Parameters.AddWithValue("@description", project.Description); 
             cmd.Parameters.AddWithValue("@img", project.Img);
             cmd.Parameters.AddWithValue("@url", project.Url);
+            cmd.Parameters.AddWithValue("@github", project.Github);
             await cmd.ExecuteNonQueryAsync();
         }
     }
@@ -122,7 +124,7 @@ public class ProjectStorage : IProjectStorage
         using (var conn = new MySqlConnection(_connectionString))
         {
             await conn.OpenAsync();
-            var cmd = new MySqlCommand("DELETE FROM Project WHERE id = @id", conn);
+            var cmd = new MySqlCommand("DELETE FROM project WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             await cmd.ExecuteNonQueryAsync();
         }
@@ -134,7 +136,7 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "INSERT INTO Project_Techno (project_id, techno_id) VALUES (@projectId, @technoId)", conn);
+                "INSERT INTO project_techno (project_id, techno_id) VALUES (@projectId, @technoId)", conn);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@technoId", technoId);
             await cmd.ExecuteNonQueryAsync();
@@ -147,7 +149,7 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "DELETE FROM Project_Techno WHERE project_id = @projectId AND techno_id = @technoId", conn);
+                "DELETE FROM project_techno WHERE project_id = @projectId AND techno_id = @technoId", conn);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             cmd.Parameters.AddWithValue("@technoId", technoId);
             await cmd.ExecuteNonQueryAsync();
@@ -161,8 +163,8 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "SELECT t.* FROM Techno t " +
-                "JOIN Project_Techno pt ON t.id = pt.techno_id " +
+                "SELECT t.* FROM techno t " +
+                "JOIN project_techno pt ON t.id = pt.techno_id " +
                 "WHERE pt.project_id = @projectId", conn);
             cmd.Parameters.AddWithValue("@projectId", projectId);
             using (var reader = await cmd.ExecuteReaderAsync())
@@ -190,7 +192,7 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "SELECT * FROM Doc WHERE project_id = @projectId", conn);
+                "SELECT * FROM doc WHERE project_id = @projectId", conn);
             cmd.Parameters.AddWithValue("@projectId", projectId.ToString());
             using (var reader = await cmd.ExecuteReaderAsync())
             {
