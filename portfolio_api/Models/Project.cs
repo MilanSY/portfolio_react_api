@@ -22,4 +22,7 @@ public class Project
 
     [Required]
     public List<Techno> Technos { get; set; } = new List<Techno>();
+
+    [Required]
+    public List<Doc> Docs { get; set; } = new List<Doc> { new Doc() };
 }

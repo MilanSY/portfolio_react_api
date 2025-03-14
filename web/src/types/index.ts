@@ -11,14 +11,15 @@ export interface Project {
   url: string;
   img: string;
   description: string;
-  techno: Techno[];
-  docs: string[];
+  technos: Techno[];
+  docs: doc[];
 }
 
-export interface docs {
+export interface doc {
   id: string;
   name: string;
   url: string;
+  projectrId: string;
 }
 
 export interface SocialLink {

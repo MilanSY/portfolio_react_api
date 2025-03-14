@@ -8,12 +8,12 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  console.log(project);
   return (
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
-          src={`/assets/img/${project.img}`} // Updated image path
+          src={`/assets/img/project/${project.img}`} // Updated image path
           alt={project.name}
           className="w-full h-48 object-cover"
         />
@@ -42,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </div>
 
             <img
-              src={`/assets/img/${project.img}`} // Updated image path
+              src={`/assets/img/project/${project.img}`} // Updated image path
               alt={project.name}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
@@ -53,8 +53,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               <div>
                 <h3 className="font-semibold mb-2">Technologies Used:</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.techno && project.techno.length > 0 ? (
-                    project.techno.map((tech) => (
+                  {project.technos && project.technos.length > 0 ? (
+                    project.technos.map((tech) => (
                       <span
                         key={tech.id}
                         className="px-3 py-1 bg-gray-100 rounded-full text-sm"
@@ -75,11 +75,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     project.docs.map((doc, index) => (
                       <a
                         key={index}
-                        href={doc}
-                        download
+                        href={doc.url}
+                        target="_blank"
+                        download={doc.url}
                         className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                       >
-                        Documentation {index + 1}
+                        {doc.name}
                       </a>
                     ))
                   ) : (

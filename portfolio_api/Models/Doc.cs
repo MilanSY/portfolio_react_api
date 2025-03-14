@@ -11,5 +11,5 @@ public class Doc
     [Required]
     public string Url { get; set; }
     [Required]
-    public string ProjectId { get; set; }
+    public Guid ProjectId { get; set; }
 }

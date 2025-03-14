@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { Hero } from './components/Hero';
-import TechnologyCard from './components/TechnologyCard';
+import TechnoCard from './components/TechnologyCard';
 import ProjectCard from './components/ProjectCard';
 import { Techno, Project } from './types';
 
@@ -19,8 +19,6 @@ function App() {
 
         const techData = await techResponse.json();
         const projectsData = await projectsResponse.json();
-        console.log(techData);
-        console.log(projectsData);
 
         setTechnologies(techData);
         setProjects(projectsData);
@@ -44,7 +42,7 @@ function App() {
             <h2 className="text-3xl font-bold mb-12 text-center">Technologies & Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {technologies.map(tech => (
-                <TechnologyCard key={tech.id} technology={tech} />
+                <TechnoCard key={tech.id} techno={tech} />
               ))}
             </div>
           </div>

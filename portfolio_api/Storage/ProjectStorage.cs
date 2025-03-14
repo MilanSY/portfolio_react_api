@@ -31,11 +31,15 @@ public class ProjectStorage : IProjectStorage
                         Description = reader.GetString("description"), 
                         Img = reader.GetString("img"), 
                         Url = reader.GetString("url"),
-                        Technos = new List<Techno>() 
+                        Technos = new List<Techno>(),
+                        Docs = new List<Doc>()
                     };
 
                     var technos = await GetTechnosForProjectAsync(project.Id.ToString());
                     project.Technos.AddRange(technos);
+
+                    var docs = await GetDocsForProjectAsync(project.Id);
+                    project.Docs.AddRange(docs);
 
                     projects.Add(project);
                 }
@@ -62,11 +66,15 @@ public class ProjectStorage : IProjectStorage
                         Description = reader.GetString("description"),
                         Img = reader.GetString("img"),
                         Url = reader.GetString("url"),
-                        Technos = new List<Techno>() 
+                        Technos = new List<Techno>(),
+                        Docs = new List<Doc>()
                     };
 
                     var technos = await GetTechnosForProjectAsync(project.Id.ToString());
                     project.Technos.AddRange(technos);
+
+                    var docs = await GetDocsForProjectAsync(project.Id);
+                    project.Docs.AddRange(docs);
 
                     return project;
                 }
@@ -173,5 +181,31 @@ public class ProjectStorage : IProjectStorage
             }
         }
         return technos;
+    }
+
+    private async Task<List<Doc>> GetDocsForProjectAsync(Guid projectId)
+    {
+        var docs = new List<Doc>();
+        using (var conn = new MySqlConnection(_connectionString))
+        {
+            await conn.OpenAsync();
+            var cmd = new MySqlCommand(
+                "SELECT * FROM Doc WHERE project_id = @projectId", conn);
+            cmd.Parameters.AddWithValue("@projectId", projectId.ToString());
+            using (var reader = await cmd.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    docs.Add(new Doc
+                    {
+                        Id = reader.GetGuid("id"),
+                        Name = reader.GetString("name"),
+                        Url = reader.GetString("url"),
+                        ProjectId = reader.GetGuid("project_id")
+                    });
+                }
+            }
+        }
+        return docs;
     }
 }

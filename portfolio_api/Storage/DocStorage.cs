@@ -29,7 +29,7 @@ public class DocStorage : IDocStorage
                         Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),
-                        ProjectId = reader.GetString("project_id")
+                        ProjectId = reader.GetGuid("project_id")
                     });
                 }
             }
@@ -53,7 +53,7 @@ public class DocStorage : IDocStorage
                         Id = reader.GetGuid("id"),
                         Name = reader.GetString("name"),
                         Url = reader.GetString("url"),
-                        ProjectId = reader.GetString("project_id")
+                        ProjectId = reader.GetGuid("project_id")
                     };
                 }
             }

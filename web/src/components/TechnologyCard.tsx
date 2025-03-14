@@ -2,21 +2,22 @@ import React from 'react';
 import { Techno } from '../types';
 
 interface TechnologyCardProps {
-  technology: Techno;
+  techno: Techno;
 }
 
-const TechnologyCard: React.FC<TechnologyCardProps> = ({ technology }) => {
+const TechnoCard: React.FC<TechnologyCardProps> = ({ techno }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4 flex items-center gap-4">
-      <img src={technology.img} alt={technology.name} className="w-12 h-12 object-contain" />
+    
+      <img src={`assets/img/techno/${techno.img}`} alt={techno.name} className="w-12 h-12 object-contain" />
       <div>
-        <h3 className="font-semibold">{technology.name}</h3>
+        <h3 className="font-semibold">{techno.name}</h3>
         <p className="text-sm text-gray-500">
-          {new Date(technology.date).toLocaleDateString()}
+          {new Date(techno.date).toLocaleDateString()}
         </p>
       </div>
     </div>
   );
 }
 
-export default TechnologyCard;
+export default TechnoCard;
