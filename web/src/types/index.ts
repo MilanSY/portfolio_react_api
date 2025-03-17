@@ -3,6 +3,7 @@ export interface Techno {
   img: string;
   name: string;
   date: string;
+  description: string;
 }
 
 export interface Project {
@@ -20,11 +21,17 @@ export interface doc {
   id: string;
   name: string;
   url: string;
-  projectrId: string;
+  projectId: string;
 }
 
 export interface SocialLink {
   name: string;
   url: string;
   icon: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  message: string;
+  token?: string;
 }
