@@ -10,8 +10,8 @@ public class Techno
     public string Img { get; set; }
     [Required]
     public string Name { get; set; }
-    [Required]
+    
     public string Url { get; set; }
-    [Required]
+    
     public DateTime Date { get; set; }
 }
