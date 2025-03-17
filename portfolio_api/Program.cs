@@ -19,7 +19,7 @@ builder.Services.AddScoped<IDocStorage, DocStorage>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:5173")
+        builder => builder.AllowAnyOrigin()
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });
@@ -41,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.Urls.Add("http://0.0.0.0:5142");
 
 app.UseCors("AllowSpecificOrigin");
 

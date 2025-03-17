@@ -13,8 +13,8 @@ function App() {
     const fetchData = async () => {
       try {
         const [techResponse, projectsResponse] = await Promise.all([
-          fetch('http://localhost:5142/api/techno'),
-          fetch('http://localhost:5142/api/project')
+          fetch('http://100.74.153.114:5142/api/techno'),
+          fetch('http://100.74.153.114:5142/api/project')
         ]);
 
         const techData = await techResponse.json();
