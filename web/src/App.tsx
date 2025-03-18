@@ -37,7 +37,7 @@ function App() {
       <main>
         <Hero />
 
-        <section id="skills" className="py-20 bg-white">
+        <section id="technologies" className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -48,7 +48,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="py-20">
+        <section id="projets" className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-12 text-center">Mes Projets</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
