@@ -12,8 +12,16 @@ const TechnoCard: React.FC<TechnologyCardProps> = ({ techno }) => {
       <img src={`assets/img/techno/${techno.img}`} alt={techno.name} className="w-12 h-12 object-contain" />
       <div>
         <h3 className="font-semibold">{techno.name}</h3>
+        
         <p className="text-sm text-gray-500">
-          {new Date(techno.date).toLocaleDateString()}
+          {(() => {
+          const date = new Date(techno.date);
+          const monthNames = [
+            "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+            "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+          ];
+          return `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+          })()}
         </p>
       </div>
     </div>
