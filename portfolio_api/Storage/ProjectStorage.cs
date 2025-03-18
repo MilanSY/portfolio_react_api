@@ -27,13 +27,13 @@ public class ProjectStorage : IProjectStorage
                     var project = new Project
                     {
                         Id = reader.GetGuid("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"), 
-                        Img = reader.GetString("img"), 
-                        Url = reader.GetString("url"),
-                        Github = reader.GetString("github"),
-                        Technos = new List<Techno>(),
-                        Docs = new List<Doc>()
+                        Name = reader.IsDBNull("name") ? string.Empty : reader.GetString("name"),
+                        Description = reader.IsDBNull("description") ? string.Empty : reader.GetString("description"), 
+                        Img = reader.IsDBNull("img") ? string.Empty : reader.GetString("img"), 
+                        Url = reader.IsDBNull("url") ? string.Empty : reader.GetString("url"),
+                        Github = reader.IsDBNull("github") ? string.Empty : reader.GetString("github"),
+                        Technos = new(),
+                        Docs = new()
                     };
 
                     var technos = await GetTechnosForProjectAsync(project.Id.ToString());
@@ -63,13 +63,13 @@ public class ProjectStorage : IProjectStorage
                     var project = new Project
                     {
                         Id = reader.GetGuid("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"),
-                        Img = reader.GetString("img"),
-                        Url = reader.GetString("url"),
-                        Github = reader.GetString("github"),
-                        Technos = new List<Techno>(),
-                        Docs = new List<Doc>()
+                        Name = reader.IsDBNull("name") ? string.Empty : reader.GetString("name"),
+                        Description = reader.IsDBNull("description") ? string.Empty : reader.GetString("description"), 
+                        Img = reader.IsDBNull("img") ? string.Empty : reader.GetString("img"), 
+                        Url = reader.IsDBNull("url") ? string.Empty : reader.GetString("url"),
+                        Github = reader.IsDBNull("github") ? string.Empty : reader.GetString("github"),
+                        Technos = new(),
+                        Docs = new()
                     };
 
                     var technos = await GetTechnosForProjectAsync(project.Id.ToString());
