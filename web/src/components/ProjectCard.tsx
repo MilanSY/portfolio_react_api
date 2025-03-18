@@ -46,8 +46,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               alt={project.name}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
-
-            <p className="mb-4">{project.description}</p>
+            {project.description.split('\n').map((line, index) => (
+              <p key={index} className="mb-4">{line}</p>
+            ))}
 
             <div className="space-y-4">
               <div>
