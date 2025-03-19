@@ -16,12 +16,11 @@ function App() {
           fetch('http://100.74.153.114:5142/api/techno'),
           fetch('http://100.74.153.114:5142/api/project')
         ]);
-
         const techData = await techResponse.json();
         const projectsData = await projectsResponse.json();
 
-        setTechnologies(techData);
-        setProjects(projectsData);
+        setTechnologies(techData.sort((a: Techno, b: Techno) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+        setProjects(projectsData.sort((a: Project, b: Project) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       } catch (error) {
         console.error('Error fetching data:', error);
       }

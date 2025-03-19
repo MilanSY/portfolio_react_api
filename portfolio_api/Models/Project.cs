@@ -8,19 +8,21 @@ public class Project
 
     [Required]
 
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
-    public string Url { get; set; }
-
-    [Required]
-    public string Img { get; set; }
-
+    public string? Url { get; set; }
 
     [Required]
-    public string Description { get; set; }
+    public string? Img { get; set; }
 
 
-    public string Github { get; set; }
+    [Required]
+    public string? Description { get; set; }
+
+
+    public string? Github { get; set; }
+    
+    public DateTime? Date { get; set; }
 
 
     public List<Techno> Technos { get; set; } = new List<Techno>();

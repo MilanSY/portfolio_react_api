@@ -7,11 +7,12 @@ public class Techno
     public Guid Id { get; set; }
 
     [Required]
-    public string Img { get; set; }
+    public string? Img { get; set; }
+
     [Required]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     
-    public string Url { get; set; }
+    public string? Url { get; set; }
     
-    public DateTime Date { get; set; }
+    public DateTime? Date { get; set; }
 }

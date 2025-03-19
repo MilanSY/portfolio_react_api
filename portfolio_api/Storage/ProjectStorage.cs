@@ -32,6 +32,7 @@ public class ProjectStorage : IProjectStorage
                         Img = reader.IsDBNull("img") ? string.Empty : reader.GetString("img"), 
                         Url = reader.IsDBNull("url") ? string.Empty : reader.GetString("url"),
                         Github = reader.IsDBNull("github") ? string.Empty : reader.GetString("github"),
+                        Date = reader.IsDBNull("date") ? DateTime.MinValue : reader.GetDateTime("date"),
                         Technos = new(),
                         Docs = new()
                     };
@@ -68,6 +69,7 @@ public class ProjectStorage : IProjectStorage
                         Img = reader.IsDBNull("img") ? string.Empty : reader.GetString("img"), 
                         Url = reader.IsDBNull("url") ? string.Empty : reader.GetString("url"),
                         Github = reader.IsDBNull("github") ? string.Empty : reader.GetString("github"),
+                        Date = reader.IsDBNull("date") ? DateTime.MinValue : reader.GetDateTime("date"),
                         Technos = new(),
                         Docs = new()
                     };
@@ -91,13 +93,14 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "INSERT INTO project (id, name, description, img, url, github) VALUES (@id, @name, @description, @img, @url, @github)", conn);
+                "INSERT INTO project (id, name, description, img, url, github, date) VALUES (@id, @name, @description, @img, @url, @github, @date)", conn);
             cmd.Parameters.AddWithValue("@id", project.Id.ToString());
             cmd.Parameters.AddWithValue("@name", project.Name);
             cmd.Parameters.AddWithValue("@description", project.Description);
             cmd.Parameters.AddWithValue("@img", project.Img);
             cmd.Parameters.AddWithValue("@url", project.Url);
             cmd.Parameters.AddWithValue("@github", project.Github); 
+            cmd.Parameters.AddWithValue("@date", project.Date); 
             await cmd.ExecuteNonQueryAsync();
         }
     }
@@ -108,13 +111,14 @@ public class ProjectStorage : IProjectStorage
         {
             await conn.OpenAsync();
             var cmd = new MySqlCommand(
-                "UPDATE project SET name = @name, description = @description, img = @img, url = @url, github = @github WHERE id = @id", conn);
+                "UPDATE project SET name = @name, description = @description, img = @img, url = @url, github = @github, date = @date WHERE id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", project.Name);
             cmd.Parameters.AddWithValue("@description", project.Description); 
             cmd.Parameters.AddWithValue("@img", project.Img);
             cmd.Parameters.AddWithValue("@url", project.Url);
             cmd.Parameters.AddWithValue("@github", project.Github);
+            cmd.Parameters.AddWithValue("@date", project.Date); 
             await cmd.ExecuteNonQueryAsync();
         }
     }

@@ -12,6 +12,7 @@ export interface Project {
   img: string;
   description: string;
   github: string;
+  date: string;
   technos: Techno[];
   docs: doc[];
 }
