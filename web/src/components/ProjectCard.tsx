@@ -29,8 +29,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)} // Close modal on backdrop click
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
               <button
@@ -47,9 +53,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
             {project.description.split('\n').map((line) => (
-              <p 
-              className="mb-4"
-              dangerouslySetInnerHTML={{ __html: line }}
+              <p
+                className="mb-4"
+                dangerouslySetInnerHTML={{ __html: line }}
               />
             ))}
 

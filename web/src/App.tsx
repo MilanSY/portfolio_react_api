@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { Hero } from './components/Hero';
-import TechnoCard from './components/TechnologyCard';
+import TechnoCard from './components/TechnoCard';
 import ProjectCard from './components/ProjectCard';
 import { Techno, Project } from './types';
 

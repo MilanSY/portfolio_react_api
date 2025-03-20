@@ -1,11 +1,11 @@
 import React from 'react';
 import { Techno } from '../types';
 
-interface TechnologyCardProps {
+interface TechnoCardProps {
   techno: Techno;
 }
 
-const TechnoCard: React.FC<TechnologyCardProps> = ({ techno }) => {
+const TechnoCard: React.FC<TechnoCardProps> = ({ techno }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4 flex items-center gap-4">
     
