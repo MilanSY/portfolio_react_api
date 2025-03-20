@@ -47,7 +47,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
             {project.description.split('\n').map((line) => (
-              <p className="mb-4">{line}</p>
+              <p 
+              className="mb-4"
+              dangerouslySetInnerHTML={{ __html: line }}
+              />
             ))}
 
             <div className="space-y-4">
