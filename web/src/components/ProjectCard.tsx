@@ -96,15 +96,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div className="space-y-2">
                   {project.docs && project.docs.length > 0 ? (
                     project.docs.map((doc, index) => (
-                      <a
-                        key={index}
-                        href={doc.url}
-                        target="_blank"
-                        download={doc.url}
-                        className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-                      >
-                        {doc.name}
-                      </a>
+                      (doc.url.startsWith('http') || doc.url.startsWith('www')) ? (
+                        <a
+                          key={index}
+                          href={doc.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                          {doc.name}
+                        </a>
+                      ) : (
+                        <a
+                          key={index}
+                          href={`/assets/docs/${doc.url}`}
+                          download={`/assets/docs/${doc.url}`}
+                          className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                          {doc.name}
+                        </a>
+                      )
                     ))
                   ) : (
                     <p>Pas de documentation disponnible.</p>
