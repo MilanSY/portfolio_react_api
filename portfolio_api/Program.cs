@@ -42,6 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.Urls.Add("https://0.0.0.0:3000");
 app.Urls.Add("http://0.0.0.0:3000");
 
 app.UseCors("AllowSpecificOrigin");
