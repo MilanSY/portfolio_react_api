@@ -6,6 +6,12 @@ using portfolio_api.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseKestrel(options =>
+{
+    options.ListenAnyIP(3000); // Écoute sur le port 3000
+    // options.Listen(IPAddress.Parse("92.91.173.121"), 3000); // Pour une IP spécifique
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<ITechnoService, TechnoService>();
