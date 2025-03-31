@@ -13,7 +13,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
-          src={`/assets/img/project/${project.img}`} // Updated image path
+          src={`/img/project/${project.img}`} // Updated image path
           alt={project.name}
           className="w-full h-48 object-cover"
         />
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </div>
 
             <img
-              src={`/assets/img/project/${project.img}`} // Updated image path
+              src={`/img/project/${project.img}`} // Updated image path
               alt={project.name}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
@@ -109,8 +109,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       ) : (
                         <a
                           key={index}
-                          href={`/assets/docs/${doc.url}`}
-                          download={`/assets/docs/${doc.url}`}
+                          href={`/docs/${doc.url}`}
+                          download={`/docs/${doc.url}`}
                           className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                         >
                           {doc.name}
