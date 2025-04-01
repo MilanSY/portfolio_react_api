@@ -44,7 +44,7 @@ public class TechnoController : ControllerBase
         }
         return Ok(techno);
     }
-
+/*
     /// <summary>
     /// Ajoute une nouvelle technologie.
     /// </summary>
@@ -92,4 +92,5 @@ public class TechnoController : ControllerBase
         await _technoService.DeleteTechnoAsync(id);
         return NoContent();
     }
+    */
 }

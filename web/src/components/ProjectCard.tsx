@@ -13,7 +13,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <img
-          src={`/assets/img/project/${project.img}`} // Updated image path
+          src={`/img/project/${project.img}`} // Updated image path
           alt={project.name}
           className="w-full h-48 object-cover"
         />
@@ -21,16 +21,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors w-full"
           >
-            Show More
+            voir plus
           </button>
         </div>
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          onClick={() => setIsModalOpen(false)} // Close modal on backdrop click
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
               <button
@@ -42,12 +48,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </div>
 
             <img
-              src={`/assets/img/project/${project.img}`} // Updated image path
+              src={`/img/project/${project.img}`} // Updated image path
               alt={project.name}
               className="w-full h-64 object-cover rounded-lg mb-4"
             />
-
-            <p className="mb-4">{project.description}</p>
+            {project.description.split('\n').map((line) => (
+              <p
+                className="mb-4"
+                dangerouslySetInnerHTML={{ __html: line }}
+              />
+            ))}
 
             <div className="space-y-4">
               <div>
@@ -86,15 +96,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div className="space-y-2">
                   {project.docs && project.docs.length > 0 ? (
                     project.docs.map((doc, index) => (
-                      <a
-                        key={index}
-                        href={doc.url}
-                        target="_blank"
-                        download={doc.url}
-                        className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-                      >
-                        {doc.name}
-                      </a>
+                      (doc.url.startsWith('http') || doc.url.startsWith('www')) ? (
+                        <a
+                          key={index}
+                          href={doc.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                          {doc.name}
+                        </a>
+                      ) : (
+                        <a
+                          key={index}
+                          href={`/docs/${doc.url}`}
+                          download={`/docs/${doc.url}`}
+                          className="block px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                          {doc.name}
+                        </a>
+                      )
                     ))
                   ) : (
                     <p>Pas de documentation disponnible.</p>

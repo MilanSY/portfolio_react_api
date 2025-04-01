@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import { Hero } from './components/Hero';
-import TechnoCard from './components/TechnologyCard';
+import TechnoCard from './components/TechnoCard';
 import ProjectCard from './components/ProjectCard';
 import { Techno, Project } from './types';
 
@@ -13,15 +13,14 @@ function App() {
     const fetchData = async () => {
       try {
         const [techResponse, projectsResponse] = await Promise.all([
-          fetch('http://localhost:5142/api/techno'),
-          fetch('http://localhost:5142/api/project')
+          fetch('http://92.91.173.121:3000/api/techno'),
+          fetch('http://92.91.173.121:3000/api/project')
         ]);
-
         const techData = await techResponse.json();
         const projectsData = await projectsResponse.json();
 
-        setTechnologies(techData);
-        setProjects(projectsData);
+        setTechnologies(techData.sort((a: Techno, b: Techno) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+        setProjects(projectsData.sort((a: Project, b: Project) => new Date(b.date).getTime() - new Date(a.date).getTime()));
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -37,7 +36,7 @@ function App() {
       <main>
         <Hero />
 
-        <section id="skills" className="py-20 bg-white">
+        <section id="technologies" className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-12 text-center">Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -48,7 +47,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="py-20">
+        <section id="projets" className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-12 text-center">Mes Projets</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -44,7 +44,7 @@ public class DocController : ControllerBase
         }
         return Ok(doc);
     }
-
+/*
     /// <summary>
     /// Ajoute un nouveau document.
     /// </summary>
@@ -92,4 +92,5 @@ public class DocController : ControllerBase
         await _docService.DeleteDocAsync(id);
         return NoContent();
     }
+*/
 }

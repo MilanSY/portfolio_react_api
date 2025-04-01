@@ -3,7 +3,7 @@ import { Github, FileText, Mail } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
-    <section id="home" className="min-h-screen pt-20 flex items-center">
+    <section id="accueil" className="min-h-screen pt-20 flex items-center">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
                 </svg>
                 </a>
                 <a
-                href="./assets/docs/CVMilanJUINO.pdf"
+                href="/docs/CVMilanJUINO.pdf"
                 download
                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
           </div>
           <div className="relative">
             <img
-              src="./assets/img/milanjuino.png"
+              src="/img/milanjuino.png"
               alt="Milan JUINO"
               className="rounded-full w-72 h-72 object-cover mx-auto shadow-2xl"
             />

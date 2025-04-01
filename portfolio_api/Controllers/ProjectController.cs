@@ -45,7 +45,7 @@ public class ProjectController : ControllerBase
         }
         return Ok(project);
     }
-
+/*
     /// <summary>
     /// Ajoute un nouveau projet.
     /// </summary>
@@ -119,4 +119,5 @@ public class ProjectController : ControllerBase
         await _projectService.RemoveTechnoFromProjectAsync(projectId, technoId);
         return NoContent();
     }
+    */
 }
